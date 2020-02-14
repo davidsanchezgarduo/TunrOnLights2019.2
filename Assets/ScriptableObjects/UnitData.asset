@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52568eb7b5ff6143b0181834699c834, type: 3}
+  m_Name: UnitData
+  m_EditorClassIdentifier: 
+  units:
+  - image: {fileID: 21300000, guid: 571adb41c9fcea3498a25ed80c9b6df9, type: 3}
+    typeName: Pistolero
+    levelsDescription:
+    - priceLevelUp: 500
+      forceAttack: 1
+      lightRange: 5
+      speedAttack: 0.4
+      lives: 30
+    - priceLevelUp: 700
+      forceAttack: 2
+      lightRange: 5.5
+      speedAttack: 0.38
+      lives: 40
+    - priceLevelUp: 900
+      forceAttack: 3
+      lightRange: 6
+      speedAttack: 0.36
+      lives: 45
+    - priceLevelUp: 1100
+      forceAttack: 4
+      lightRange: 6.5
+      speedAttack: 0.34
+      lives: 50
+    - priceLevelUp: 0
+      forceAttack: 5
+      lightRange: 7
+      speedAttack: 0.32
+      lives: 55
+  - image: {fileID: 21300000, guid: e21e4442bcfa8ff4c9f6b44fb2194e47, type: 3}
+    typeName: Francotirador
+    levelsDescription:
+    - priceLevelUp: 500
+      forceAttack: 10
+      lightRange: 7
+      speedAttack: 1
+      lives: 20
+    - priceLevelUp: 700
+      forceAttack: 12
+      lightRange: 7.4
+      speedAttack: 0.95
+      lives: 25
+    - priceLevelUp: 900
+      forceAttack: 14
+      lightRange: 7.8
+      speedAttack: 0.9
+      lives: 30
+    - priceLevelUp: 1100
+      forceAttack: 16
+      lightRange: 8.2
+      speedAttack: 0.85
+      lives: 35
+    - priceLevelUp: 0
+      forceAttack: 18
+      lightRange: 8.4
+      speedAttack: 0.8
+      lives: 40

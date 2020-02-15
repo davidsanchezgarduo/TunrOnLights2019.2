@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     public Animator menuAnimator;
     public Animator pauseAnimator;
     public Button menuButton;
+    private TextMeshProUGUI menuButtonText;
     public TextMeshProUGUI hordeText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI civilsText;
@@ -30,6 +31,8 @@ public class UIController : MonoBehaviour
 
     public int TotalCivils;
     public GameObject NeedKey;
+    public TextMeshProUGUI restantUnits;
+    private int totalEnemies;
 
     public void Awake()
     {
@@ -45,6 +48,7 @@ public class UIController : MonoBehaviour
         pauseAnimator.gameObject.SetActive(false);
         dataText.text = "Unidad: \nFuerza: \nVelocidad: \nRango: \nVitalidad: ";
         hordeText.text = "Horda: 0";
+        menuButtonText = menuButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         //civilsText.text = "Civils 0/";
         menuOpen = false;
 
@@ -101,21 +105,27 @@ public class UIController : MonoBehaviour
         dataText.text = "Unidad: \nFuerza: \nVelocidad: \nRango: \nVitalidad: ";
     }
 
-    public void SetHorde(int h)
+    public void SetHorde(int h,int enemies)
     {
         if (menuOpen)
         {
             CloseMenu();
         }
+        totalEnemies = enemies;
         menuButton.interactable = false;
-        menuButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Horda";
+        menuButtonText.text = "Zombies: "+ totalEnemies;
         hordeText.text = "Horda: " + h;
+    }
+
+    public void SetRestantZombies() {
+        totalEnemies--;
+        menuButtonText.text = "Zombies: " + totalEnemies;
     }
 
     public void FinishHorde() {
         endLevelButton.SetActive(false);
         menuButton.interactable = true;
-        menuButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Unidades";
+        menuButtonText.text = "Unidades";
     }
 
     public void SetLivesText(int lives) {
@@ -168,6 +178,10 @@ public class UIController : MonoBehaviour
     IEnumerator WaitAlertKey() {
         yield return new WaitForSeconds(2f);
         NeedKey.SetActive(false);
+    }
+
+    public void SetUnits(int res) {
+        restantUnits.text = "Unidades: " + res;
     }
 
 }

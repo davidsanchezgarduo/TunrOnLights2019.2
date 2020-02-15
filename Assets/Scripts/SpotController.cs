@@ -64,12 +64,18 @@ public class SpotController : MonoBehaviour
         return r;
     }
 
-    public void StartHorde(float plusDifficult) {
+    public int StartHorde(float plusDifficult) {
         maxEnemimesPerHorde += plusDifficult;
         currenMaxEnemies = Mathf.RoundToInt(maxEnemimesPerHorde);
         currentTimeSpawn = 0;
         currentEnemiesSpawn = 0;
         finishSpawn = false;
+
+        if (isActive)
+        {
+            return currenMaxEnemies;
+        }
+        return -1;
     }
 
 }

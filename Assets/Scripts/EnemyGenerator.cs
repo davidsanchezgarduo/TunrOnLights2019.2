@@ -37,8 +37,10 @@ public class EnemyGenerator : MonoBehaviour
         if (killed)
         {
             GameManager.instance.zombiesKilled++;
+
         }
-        //Debug.Log("Restant zombies "+ enemies.Count+" "+GameManager.instance.hasFinishSpawn);
+        UIController.instance.SetRestantZombies();
+
         if (GameManager.instance.hasFinishSpawn && enemies.Count == 0) {
             GameManager.instance.FinishHorde();
         }

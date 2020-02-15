@@ -39,7 +39,7 @@ public class CameraControl : MonoBehaviour
             return;
         }
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (Input.touchCount > 0) {
             Debug.Log("Input "+Input.GetTouch(0).position);
             Touch touch =  Input.GetTouch(0);

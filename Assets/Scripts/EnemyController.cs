@@ -117,6 +117,7 @@ public class EnemyController : MonoBehaviour
                     bool died = currentTarget.ReciveDamage(attackForce);
                     if (died)
                     {
+                        anim.SetTrigger("Run");
                         currentState = EnemyState.RUNNING;
                         agent.speed = speed;
                         agent.SetDestination(new Vector3(goal.transform.position.x, 0.5f, goal.transform.position.z));

@@ -590,6 +590,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: zombie@Running Crawl
       objectReference: {fileID: 0}
+    - target: {fileID: 122804263638905775, guid: 86f702ff701055147a2a7eecab648cbc,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 122804263638905775, guid: 86f702ff701055147a2a7eecab648cbc,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86f702ff701055147a2a7eecab648cbc, type: 3}
 --- !u!4 &5006512736462702967 stripped

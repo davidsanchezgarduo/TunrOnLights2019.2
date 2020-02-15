@@ -5313,6 +5313,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: akai_e_espiritu@Dying Backwards
       objectReference: {fileID: 0}
+    - target: {fileID: -851683198256467125, guid: f12403e9a0b89b140bbd8e70bcd3b943,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -851683198256467125, guid: f12403e9a0b89b140bbd8e70bcd3b943,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f12403e9a0b89b140bbd8e70bcd3b943, type: 3}
 --- !u!1 &2530576068427244730 stripped

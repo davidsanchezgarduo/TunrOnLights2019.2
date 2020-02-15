@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public LevelScriptableObject levelData;
     public int horde;
     public int unitsToNextHorde;
-    public int unitsPerHorde = 2;
+    public float unitsPerHorde = 2;
     public bool inHorde;
     public float plusSpawnDifficult = 0.5f;
     public int lives = 5; 
@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         UIController.instance.TotalCivils = restantCivils;
         UIController.instance.SetLivesText(lives);
         UIController.instance.SetCivils(0);
+        UIController.instance.SetUnits(unitsToNextHorde);
 
         for(var i =0; i < levelData.levels[levelId].civilPositions.Length; i++) {
             GameObject civil = Instantiate(civilPrefab, new Vector3(levelData.levels[levelId].civilPositions[i].x,civilPrefab.transform.position.y, levelData.levels[levelId].civilPositions[i].y),Quaternion.identity);
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
     public void SetUnit() {
         unitsDeployed++;
         unitsToNextHorde--;
+        UIController.instance.SetUnits(unitsToNextHorde);
         //Debug.Log("SetUnit");
         if (unitsToNextHorde == 0) {
             //Debug.Log("StartHorde");
@@ -103,23 +105,33 @@ public class GameManager : MonoBehaviour
             }
 
             hordeSource.Play();
-            UIController.instance.SetHorde(horde);
+            
             inHorde = true;
             UnitiesManager.instance.inHorde = true;
             hasFinishSpawn = false;
+            int active = 0;
             for (int i = 0; i < spots.Count; i++)
             {
-                spots[i].StartHorde(plusSpawnDifficult);
+                int enemies = spots[i].StartHorde(plusSpawnDifficult);
+                if (enemies != -1) {
+                    active+=enemies;
+                }
             }
+            UIController.instance.SetHorde(horde,active);
+
+
+
         }
     }
 
     public void FinishHorde() {
         horde++;
         inHorde = false;
-        unitsToNextHorde = unitsPerHorde;
+        unitsPerHorde += plusSpawnDifficult;
+        unitsToNextHorde = Mathf.RoundToInt(unitsPerHorde);
         UnitiesManager.instance.inHorde = false;
         UIController.instance.FinishHorde();
+        UIController.instance.SetUnits(unitsToNextHorde);
     }
 
     public void LoseLive() {

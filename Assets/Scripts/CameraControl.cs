@@ -54,6 +54,9 @@ public class CameraControl : MonoBehaviour
                     if (hit.collider.CompareTag("Door")) {
                         hit.collider.GetComponent<DoorControl>().OpenDoors();
                     }
+                    else if (hit.collider.CompareTag("Key")) {
+                        hit.collider.GetComponent<KeyController>().GetKey();
+                    }
                 }
             }
 
@@ -138,6 +141,9 @@ public class CameraControl : MonoBehaviour
                 Debug.Log(hit.collider.tag);
                 if (hit.collider.CompareTag("Door")) {
                     hit.collider.GetComponent<DoorControl>().OpenDoors();
+                }
+                else if (hit.collider.CompareTag("Key")) {
+                    hit.collider.GetComponent<KeyController>().GetKey();
                 }
             }
         }

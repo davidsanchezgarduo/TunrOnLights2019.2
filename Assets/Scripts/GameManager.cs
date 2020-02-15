@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     public AudioSource hordeSource;
     public bool gamePaused;
 
+    private List<int> keysIds;
+
     private void Awake()
     {
         instance = this;
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        keysIds = new List<int>();
         gamePaused = false;
         unitsDeployed = 0;
         zombiesKilled = 0;
@@ -140,6 +143,14 @@ public class GameManager : MonoBehaviour
         if (restantCivils == 0) {
             FinishLevel(true);
         }
+    }
+
+    public void AddKey(int id) {
+        keysIds.Add(id);
+    }
+
+    public bool CheckKey(int id) {
+        return keysIds.Contains(id);
     }
 
 

@@ -12,7 +12,7 @@ public class DoorControl : MonoBehaviour
     public MeshRenderer door1;
     public MeshRenderer door2;
     public GameObject hiddenArea;
-
+    public int keyId = -1;
     private void Start()
     {
         UnitiesManager.instance.AddDoor(this);
@@ -24,11 +24,30 @@ public class DoorControl : MonoBehaviour
     public void OpenDoors() {
         if (canOpen)
         {
-            hiddenArea.SetActive(false);
-            myAnim.SetTrigger("Open");
-            OutDooor();
-            for (int i = 0; i < spots.Length; i++) {
-                spots[i].isActive = true;
+            if (keyId == -1)
+            {
+                hiddenArea.SetActive(false);
+                myAnim.SetTrigger("Open");
+                OutDooor();
+                for (int i = 0; i < spots.Length; i++)
+                {
+                    spots[i].isActive = true;
+                }
+            }
+            else {
+                if (GameManager.instance.CheckKey(keyId))
+                {
+                    hiddenArea.SetActive(false);
+                    myAnim.SetTrigger("Open");
+                    OutDooor();
+                    for (int i = 0; i < spots.Length; i++)
+                    {
+                        spots[i].isActive = true;
+                    }
+                }
+                else {
+                    UIController.instance.ShowAlertKey();
+                }
             }
         }
     }

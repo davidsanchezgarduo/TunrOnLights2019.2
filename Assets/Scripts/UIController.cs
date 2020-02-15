@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
     private float offsetButton = 30;
 
     public int TotalCivils;
-
+    public GameObject NeedKey;
 
     public void Awake()
     {
@@ -39,6 +39,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        NeedKey.SetActive(false);
         endLevelButton.SetActive(false);
         gameOverPanel.SetActive(false);
         pauseAnimator.gameObject.SetActive(false);
@@ -157,6 +158,16 @@ public class UIController : MonoBehaviour
 
     public void ClickEndLevel() {
         EnemyGenerator.instance.ActivateEnd();
+    }
+
+    public void ShowAlertKey() {
+        NeedKey.SetActive(true);
+        StartCoroutine(WaitAlertKey());
+    }
+
+    IEnumerator WaitAlertKey() {
+        yield return new WaitForSeconds(2f);
+        NeedKey.SetActive(false);
     }
 
 }

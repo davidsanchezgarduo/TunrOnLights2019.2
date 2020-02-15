@@ -10,6 +10,7 @@ public class UnitiesManager : MonoBehaviour
     public List<UnityController> unities;
     private List<LightController> ligths;
     private List<DoorControl> doors;
+    private List<KeyController> keys;
     private List<CivilController> civils;
     private float distanceMinBetween = 2f;
     private ShadowController shadow;
@@ -20,6 +21,7 @@ public class UnitiesManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        keys = new List<KeyController>();
         doors = new List<DoorControl>();
         civils = new List<CivilController>();
     }
@@ -141,6 +143,15 @@ public class UnitiesManager : MonoBehaviour
         doors.Add(d);
     }
 
+    public void AddKey(KeyController k)
+    {
+        keys.Add(k);
+    }
+
+    public void RemoveKey(KeyController k) {
+        keys.Remove(k);
+    }
+
     public void AddCivil(CivilController c)
     {
         civils.Add(c);
@@ -166,6 +177,15 @@ public class UnitiesManager : MonoBehaviour
             {
                 //doors[i].canOpen = true;
                 doors[i].OnDoor();
+            }
+        }
+
+        for (int i = 0; i < keys.Count; i++)
+        {
+            float dist = Vector3.Distance(keys[i].transform.position, pos);
+            if (dist <= range)
+            {
+                keys[i].OnKey();
             }
         }
 

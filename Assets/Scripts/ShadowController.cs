@@ -16,7 +16,7 @@ public class ShadowController : MonoBehaviour
     private void Awake()
     {
         texture = new Texture2D(1024, 1024, TextureFormat.ARGB32, false);
-        resetColor = new Color(0, 0, 0, 1f);
+        resetColor = new Color(0.15f, 0.15f, 0.15f, 1f);
         alphaColor = new Color(0, 0, 0, 0f);
         Color[] resetColorArray = texture.GetPixels();
 

@@ -37,8 +37,10 @@ public class UnitLevelController : MonoBehaviour
         buttonSound.Play();
         if (DataController.instance.playerData.points >= needPoints) {
             DataController.instance.playerData.points -= needPoints;
+            DataController.instance.SaveData();
             pointsText.text = "Puntos: " + DataController.instance.playerData.points;
             DataController.instance.unitsData.units[unitId].level++;
+            DataController.instance.SaveUnitsData();
             return true;
         }
         return false;

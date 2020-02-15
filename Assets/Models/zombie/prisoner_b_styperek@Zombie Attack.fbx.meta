@@ -1,27 +1,12 @@
 fileFormatVersion: 2
-guid: 16a2bad2677c4d94e98cdae5a054da54
+guid: 938ec4e9a15d1834ea5295daa2a55b3f
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: prisoner_diffuse
-    second: {fileID: 2800000, guid: 14741d60ccddb9b449171777cff60a07, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: prisoner_normal
-    second: {fileID: 2800000, guid: d09757925f9b3a8499ffa6b0cd4fdf4b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: prisoner_specular
-    second: {fileID: 2800000, guid: 5a8a5885ea36c804a82c1515dc005e5e, type: 3}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

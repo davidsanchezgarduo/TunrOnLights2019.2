@@ -42,6 +42,88 @@ public class CameraControl : MonoBehaviour
 #if UNITY_ANDROID
         if (Input.touchCount > 0) {
             Debug.Log("Input "+Input.GetTouch(0).position);
+            Touch touch =  Input.GetTouch(0);
+            if(touch.phase == TouchPhase.Ended &&  !GameManager.instance.inHorde){
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                int layerMask = 1 << 8;
+                layerMask = ~layerMask;
+                if (Physics.Raycast(ray, out hit, 30, layerMask))
+                {
+                    Debug.Log(hit.collider.tag);
+                    if (hit.collider.CompareTag("Door")) {
+                        hit.collider.GetComponent<DoorControl>().OpenDoors();
+                    }
+                }
+            }
+
+            if(touch.phase == TouchPhase.Moved){
+                if (inMovement)
+                {
+                    if (UIController.instance.menuOpen && touch.position.y < 200)
+                    {
+
+
+                    }
+                    else
+                    {
+                        if (lastPosition.x == -1)
+                        {
+                            lastPosition = touch.position;
+                        }
+                        else
+                        {
+                            deltaMovement.x = -(touch.position.x - lastPosition.x);
+                            deltaMovement.y = -(touch.position.y - lastPosition.y);
+
+                            if ((deltaMovement.x * speedMovement) + transform.position.x > limitX.y)
+                            {
+                                deltaMovement.x = limitX.y - transform.position.x;
+                            }
+                            else if ((deltaMovement.x * speedMovement) + transform.position.x < limitX.x)
+                            {
+                                deltaMovement.x = limitX.x - transform.position.x;
+                            }
+                            else
+                            {
+                                deltaMovement.x *= speedMovement;
+                            }
+
+                            if ((deltaMovement.y * speedMovement) + transform.position.z > limitZ.y)
+                            {
+                                deltaMovement.y = limitZ.y - transform.position.z;
+                            }
+                            else if ((deltaMovement.y * speedMovement) + transform.position.z < limitZ.x)
+                            {
+                                deltaMovement.y = limitZ.x - transform.position.z;
+                            }
+                            else
+                            {
+                                deltaMovement.y *= speedMovement;
+                            }
+
+                            transform.Translate(new Vector3(deltaMovement.x, 0, deltaMovement.y));
+
+                            lastPosition = touch.position;
+
+                        }
+                    }
+                }
+                else {
+                    //Posicionando Objeto
+
+                }
+            }
+           
+        }
+         else{
+            //Debug.Log("No mouse");
+            if (!inMovement) {
+
+            }
+
+            lastPosition.x = -1;
+            lastPosition.y = -1;
         }
 #else
         if (Input.GetMouseButtonUp(0) && !GameManager.instance.inHorde)

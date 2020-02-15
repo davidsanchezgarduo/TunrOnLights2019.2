@@ -9,6 +9,8 @@ TagManager:
   - Shadow
   - Floor
   - ButtonSound
+  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX

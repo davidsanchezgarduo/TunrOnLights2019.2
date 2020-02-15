@@ -24,8 +24,3 @@ MonoBehaviour:
     - {x: -3.45, y: -16.4}
     - {x: 4.9, y: -10}
     - {x: 4.55, y: -23}
-  - level: 0
-    name: 
-    unitsToHorde: 0
-    sceneName: 
-    civilPositions: []

@@ -11,6 +11,7 @@ public class DoorControl : MonoBehaviour
     private Material initialMaterial;
     public MeshRenderer door1;
     public MeshRenderer door2;
+    public GameObject hiddenArea;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class DoorControl : MonoBehaviour
     public void OpenDoors() {
         if (canOpen)
         {
+            hiddenArea.SetActive(false);
             myAnim.SetTrigger("Open");
             OutDooor();
             for (int i = 0; i < spots.Length; i++) {

@@ -57,7 +57,29 @@ public class EnemyGenerator : MonoBehaviour
             float dis = Vector3.Distance(enemies[i].transform.position, pos);
             if (dis < range)
             {
-                return enemies[i];
+
+                RaycastHit hit;
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(pos, enemies[i].transform.position - pos, out hit, range * 2))
+                {
+                    if (hit.collider.transform.tag == "Enemy")
+                    {
+                        //Debug.Log("Can see enemy, start shoot");
+                        return enemies[i];
+                    }
+                    else
+                    {
+                        //Debug.Log("No enemy " + hit.collider.transform.tag);
+                        return null;
+                    }
+
+                }
+                else
+                {
+                    return null;
+                }
+
+                
             }
 
         }

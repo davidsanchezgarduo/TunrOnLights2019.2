@@ -44,7 +44,7 @@ public class UIController : MonoBehaviour
         pauseAnimator.gameObject.SetActive(false);
         dataText.text = "Unidad: \nFuerza: \nVelocidad: \nRango: \nVitalidad: ";
         hordeText.text = "Horda: 0";
-        civilsText.text = "Civils 0/2";
+        //civilsText.text = "Civils 0/";
         menuOpen = false;
 
         for (int i = 0; i < unitScriptable.units.Length; i++) {
@@ -118,11 +118,12 @@ public class UIController : MonoBehaviour
     }
 
     public void SetLivesText(int lives) {
-        livesText.text = "Vidas: " + lives;
+        livesText.text = "" + lives;
     }
 
     public void SetCivils(int civils)
     {
+        Debug.Log(""+ TotalCivils);
         civilsText.text = "Civils: " + civils+"/"+TotalCivils;
     }
 

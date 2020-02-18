@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShadowController : MonoBehaviour
+/*public class ShadowController : MonoBehaviour
 {
     private Material myMaterial;
     private float myScale;
@@ -100,4 +100,90 @@ public class ShadowController : MonoBehaviour
 
 
 
+}*/
+
+
+
+public class ShadowController : MonoBehaviour
+{
+    private Material myMaterial;
+    private float myScale;
+    private Vector2 goalLight;
+    private float goalLightRange;
+
+    private Vector4[] _ArrayPoints;
+    private float[] _ArrayRange;
+    private float[] _ArrayRealRange;
+    private int _ArrayLength;
+    private bool hasChange;
+
+    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        /*texture = new Texture2D(1024, 1024, TextureFormat.ARGB32, false);
+        resetColor = new Color(0.15f, 0.15f, 0.15f, 1f);
+        alphaColor = new Color(0, 0, 0, 0f);
+        Color[] resetColorArray = texture.GetPixels();
+
+        for (int i = 0; i < resetColorArray.Length; i++)
+        {
+            resetColorArray[i] = resetColor;
+        }
+
+        texture.SetPixels(resetColorArray);
+        texture.Apply();*/
+
+        myMaterial = GetComponent<MeshRenderer>().material;
+    }
+
+    void Start()
+    {
+        _ArrayPoints = new Vector4[50];
+        _ArrayRange = new float[50];
+        _ArrayRealRange = new float[50];
+        _ArrayLength = 0;
+        myScale = transform.localScale.x;
+        hasChange = false;
+    }
+
+    private void Update()
+    {
+
+        if (hasChange) {
+            myMaterial.SetVectorArray("_ArrayPoints", _ArrayPoints);
+            myMaterial.SetFloatArray("_ArrayRange", _ArrayRange);
+            myMaterial.SetInt("_ArrayLength", _ArrayLength);
+        }
+
+    }
+
+    public void SetGoalLight(Vector2 textCoord, float range)
+    {
+        goalLight = textCoord;
+        goalLightRange = range;
+        SetUnit(goalLight, goalLightRange);
+    }
+
+    public void ReescanGoal()
+    {
+        SetUnit(goalLight, goalLightRange);
+    }
+
+    public void SetUnit(Vector2 textureCoord, float rangeLight)
+    {
+        //Añadimos valores a los array
+
+    }
+
+    public void RemoveUnit(Vector2 textureCoord, float rangeLight)
+    {
+        //Buscamos en los array los valores similares del vector2, obtenemos el ai y eliminamos en los otros puntos
+        //Tambien movemos de lugar los valores en el array para no dejar espacios vacios
+
+    }
+
+
+
 }
+

@@ -51,7 +51,7 @@ public class UnityController : MonoBehaviour
         currentState = UnitState.SEARCHING;
         initialLives = lives;
         currentTarget = null;
-        areaCircle.localScale = new Vector3(lightRange*2,0.01f,lightRange*2);
+        //areaCircle.localScale = new Vector3(lightRange*2,0.01f,lightRange*2);
         myAudioSource = GetComponent<AudioSource>();
 
     }

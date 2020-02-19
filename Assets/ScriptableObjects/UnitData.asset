@@ -18,27 +18,27 @@ MonoBehaviour:
     levelsDescription:
     - priceLevelUp: 500
       forceAttack: 1
-      lightRange: 5
+      lightRange: 0.08
       speedAttack: 0.4
       lives: 30
     - priceLevelUp: 700
       forceAttack: 2
-      lightRange: 5.5
+      lightRange: 0.09
       speedAttack: 0.38
       lives: 40
     - priceLevelUp: 900
       forceAttack: 3
-      lightRange: 6
+      lightRange: 0.1
       speedAttack: 0.36
       lives: 45
     - priceLevelUp: 1100
       forceAttack: 4
-      lightRange: 6.5
+      lightRange: 0.11
       speedAttack: 0.34
       lives: 50
     - priceLevelUp: 0
       forceAttack: 5
-      lightRange: 7
+      lightRange: 0.12
       speedAttack: 0.32
       lives: 55
   - image: {fileID: 21300000, guid: e21e4442bcfa8ff4c9f6b44fb2194e47, type: 3}
@@ -46,26 +46,26 @@ MonoBehaviour:
     levelsDescription:
     - priceLevelUp: 500
       forceAttack: 10
-      lightRange: 7
+      lightRange: 0.11
       speedAttack: 1
       lives: 20
     - priceLevelUp: 700
       forceAttack: 12
-      lightRange: 7.4
+      lightRange: 0.12
       speedAttack: 0.95
       lives: 25
     - priceLevelUp: 900
       forceAttack: 14
-      lightRange: 7.8
+      lightRange: 0.13
       speedAttack: 0.9
       lives: 30
     - priceLevelUp: 1100
       forceAttack: 16
-      lightRange: 8.2
+      lightRange: 0.14
       speedAttack: 0.85
       lives: 35
     - priceLevelUp: 0
       forceAttack: 18
-      lightRange: 8.4
+      lightRange: 0.15
       speedAttack: 0.8
       lives: 40

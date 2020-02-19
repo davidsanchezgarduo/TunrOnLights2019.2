@@ -10,7 +10,7 @@ public class LightController : MonoBehaviour
     void Start()
     {
         lightArea = transform.GetChild(0);
-        lightArea.localScale = new Vector3(lightRange*2,0.01f, lightRange*2);
+        //lightArea.localScale = new Vector3(lightRange*2,0.01f, lightRange*2);
 
         RaycastHit hit;
         int layerMask = 1 << 8;

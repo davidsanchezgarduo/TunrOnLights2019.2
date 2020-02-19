@@ -15,6 +15,7 @@ public class UnitiesManager : MonoBehaviour
     private float distanceMinBetween = 2f;
     private ShadowController shadow;
     public UnitScriptableObject unitScriptable;
+    private float rangeConvert = 55.5f;
 
     public bool inHorde;
 
@@ -52,7 +53,7 @@ public class UnitiesManager : MonoBehaviour
             float dis = Vector3.Distance(unities[i].transform.position, chek);
             if (dis > distanceMinBetween)
             {
-                if (dis < unities[i].lightRange)
+                if (dis < unities[i].lightRange* rangeConvert)
                 {
                     canPos = 2;
                 }
@@ -68,7 +69,7 @@ public class UnitiesManager : MonoBehaviour
                 float dis = Vector3.Distance(ligths[i].transform.position, chek);
                 if (dis > 0)
                 {
-                    if (dis < ligths[i].lightRange)
+                    if (dis < ligths[i].lightRange* rangeConvert)
                     {
                         canPos = 2;
                     }

@@ -4960,7 +4960,7 @@ MonoBehaviour:
   typeName: Unidad
   socialName: Unidad
   forceAttack: 1
-  lightRange: 5
+  lightRange: 0.08
   speedAttack: 0.4
   lives: 50
   myTextCoord: {x: 0, y: 0}

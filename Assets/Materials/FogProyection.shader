@@ -5,6 +5,7 @@
         _Color ("Color", Color) = (1,1,1,1)
         //_sphere1("Vector",Vector) = (0,0,0)
         _MainTex ("Texture", 2D) = "white" {}
+        _ArrayLength("Numero",int) = 0
     }
     SubShader
     {
@@ -72,13 +73,12 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            float4 _sphere1;
-
             fixed4 _Color;
 
             int _ArrayLength = 0;
-            float2 _ArrayPoints[50];
-            float2 _ArrayRange[50];
+            float4 _ArrayPoints[50];
+            float _ArrayRange[50];
+             
 
             struct appdata{
                 float4 vertex : POSITION;
@@ -98,11 +98,26 @@
             }
 
             fixed4 frag(v2f i) : SV_TARGET{
-                float d = distance(i.uv,_sphere1.xy);
-                fixed4 col = tex2D(_MainTex, i.uv);
+                //float d = distance(i.uv,_sphere1.xy);
+                float d = 1;
+                fixed4 col;
                 col = _Color;
-                if(d < 0.1){
-                    col.a = 0;
+                for(int j=0; j<_ArrayLength; j++){
+                    d = distance(i.uv,_ArrayPoints[j].xy);
+                    if(d <= _ArrayRange[j]){
+                        float per = d/_ArrayRange[j];
+                        per*=0.5f;
+                        /*if(per>1){
+                            per = 1;
+                        }*/
+                        //per = 1-per;
+                        if(col.a > per){
+                            col.a = per;
+                        }
+                    }
+                    /*if(d < 0.1){
+                        //col.a = 0;
+                    }*/
                 }
                 
                 return col;

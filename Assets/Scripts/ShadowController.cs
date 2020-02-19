@@ -111,12 +111,15 @@ public class ShadowController : MonoBehaviour
     private Vector2 goalLight;
     private float goalLightRange;
 
-    private Vector4[] _ArrayPoints;
-    private float[] _ArrayRange;
-    private float[] _ArrayRealRange;
-    private int _ArrayLength;
+    public Vector4[] _ArrayPoints;
+    public float[] _ArrayRange;
+    public float[] _ArrayRangeInitial;
+    public float[] _ArrayTime;
+    public float[] _ArrayRealRange;
+    public int _ArrayLength;
     private bool hasChange;
 
+    private float velLerp = 2;
     // Start is called before the first frame update
 
     private void Awake()
@@ -135,26 +138,44 @@ public class ShadowController : MonoBehaviour
         texture.Apply();*/
 
         myMaterial = GetComponent<MeshRenderer>().material;
+        _ArrayPoints = new Vector4[50];
+        _ArrayRange = new float[50];
+        _ArrayTime = new float[50];
+        _ArrayRangeInitial = new float[50];
+        _ArrayRealRange = new float[50];
+        _ArrayLength = 0;
     }
 
     void Start()
     {
-        _ArrayPoints = new Vector4[50];
-        _ArrayRange = new float[50];
-        _ArrayRealRange = new float[50];
-        _ArrayLength = 0;
+
         myScale = transform.localScale.x;
         hasChange = false;
     }
 
-    private void Update()
+    void Update()
     {
+
+        for(int i = 0; i < _ArrayLength; i++) {
+            if (_ArrayTime[i] < 1) { 
+                _ArrayTime[i] += velLerp * Time.deltaTime;
+                if (_ArrayTime[i] > 1) {
+                    _ArrayTime[i] = 1;
+                }
+                _ArrayRange[i] = Mathf.Lerp(_ArrayRangeInitial[i], _ArrayRealRange[i], _ArrayTime[i]);
+
+                hasChange = true;
+
+            }
+        }
 
         if (hasChange) {
             myMaterial.SetVectorArray("_ArrayPoints", _ArrayPoints);
             myMaterial.SetFloatArray("_ArrayRange", _ArrayRange);
             myMaterial.SetInt("_ArrayLength", _ArrayLength);
+            hasChange = false;
         }
+        
 
     }
 
@@ -172,7 +193,15 @@ public class ShadowController : MonoBehaviour
 
     public void SetUnit(Vector2 textureCoord, float rangeLight)
     {
+        Debug.Log(textureCoord+" "+ rangeLight);
         //Añadimos valores a los array
+        _ArrayPoints[_ArrayLength] = new Vector4(textureCoord.x,textureCoord.y,0,0);
+        _ArrayRange[_ArrayLength] = rangeLight/2;
+        _ArrayTime[_ArrayLength] = 0;
+        _ArrayRangeInitial[_ArrayLength] = rangeLight / 2;
+        _ArrayRealRange[_ArrayLength] = rangeLight;
+        Debug.Log(_ArrayPoints[_ArrayLength].ToString()+"  "+ _ArrayRealRange[_ArrayLength]+"   "+ _ArrayRange[_ArrayLength] + " " + rangeLight);
+        _ArrayLength++;
 
     }
 

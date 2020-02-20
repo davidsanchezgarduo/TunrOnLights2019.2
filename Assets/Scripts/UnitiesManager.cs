@@ -15,8 +15,8 @@ public class UnitiesManager : MonoBehaviour
     private float distanceMinBetween = 2f;
     private ShadowController shadow;
     public UnitScriptableObject unitScriptable;
-    private float rangeConvert = 55.5f;
-
+    private float rangeConvert = 56f;
+    private float rangeDie = 0.03f;
     public bool inHorde;
 
     private void Awake()
@@ -125,10 +125,13 @@ public class UnitiesManager : MonoBehaviour
     public void RemoveUnity(UnityController unityToRemove) {
         unities.Remove(unityToRemove);
         shadow.RemoveUnit(unityToRemove.myTextCoord,unityToRemove.lightRange);
-        for(int i = 0; i < unities.Count; i++) {
+
+        //Aparecer vela o lapida en la posicion del muerto
+
+        /*for(int i = 0; i < unities.Count; i++) {
             shadow.SetUnit(unities[i].myTextCoord, unities[i].lightRange);
-        }
-        shadow.ReescanGoal();
+        }*/
+        //shadow.ReescanGoal();
 
         if (unities.Count == 0) {
             UIController.instance.ActivateEndLevel();

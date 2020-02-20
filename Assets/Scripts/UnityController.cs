@@ -70,7 +70,7 @@ public class UnityController : MonoBehaviour
 
         if (currentState == UnitState.SEARCHING)
         {
-            currentTarget = EnemyGenerator.instance.CheckEnemyInRange(transform.position, lightRange);
+            currentTarget = EnemyGenerator.instance.CheckEnemyInRange(transform.position, lightRange*56);
             if (currentTarget != null) {
                 currentState = UnitState.ATTACKING;
                 //transform.LookAt(currentTarget.transform);

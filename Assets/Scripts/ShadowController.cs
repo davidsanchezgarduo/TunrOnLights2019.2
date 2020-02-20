@@ -111,14 +111,13 @@ public class ShadowController : MonoBehaviour
     private Vector2 goalLight;
     private float goalLightRange;
 
-    public Vector4[] _ArrayPoints;
-    public float[] _ArrayRange;
-    public float[] _ArrayRangeInitial;
-    public float[] _ArrayTime;
-    public float[] _ArrayRealRange;
-    public int _ArrayLength;
+    private Vector4[] _ArrayPoints;
+    private float[] _ArrayRange;
+    private float[] _ArrayRangeInitial;
+    private float[] _ArrayTime;
+    private float[] _ArrayRealRange;
+    private int _ArrayLength;
     private bool hasChange;
-
     private float velLerp = 2;
     // Start is called before the first frame update
 
@@ -200,15 +199,24 @@ public class ShadowController : MonoBehaviour
         _ArrayTime[_ArrayLength] = 0;
         _ArrayRangeInitial[_ArrayLength] = rangeLight / 2;
         _ArrayRealRange[_ArrayLength] = rangeLight;
-        Debug.Log(_ArrayPoints[_ArrayLength].ToString()+"  "+ _ArrayRealRange[_ArrayLength]+"   "+ _ArrayRange[_ArrayLength] + " " + rangeLight);
+        //Debug.Log(_ArrayPoints[_ArrayLength].ToString()+"  "+ _ArrayRealRange[_ArrayLength]+"   "+ _ArrayRange[_ArrayLength] + " " + rangeLight);
         _ArrayLength++;
 
     }
 
-    public void RemoveUnit(Vector2 textureCoord, float rangeLight)
+    public void RemoveUnit(Vector2 textureCoord, float rangeDie)
     {
         //Buscamos en los array los valores similares del vector2, obtenemos el ai y eliminamos en los otros puntos
         //Tambien movemos de lugar los valores en el array para no dejar espacios vacios
+
+        for(int i = 0; i < _ArrayLength; i++) { 
+            if(_ArrayPoints[i].x == textureCoord.x && _ArrayPoints[i].y == textureCoord.y) {
+                _ArrayTime[i] = 0;
+                _ArrayRangeInitial[i] = _ArrayRange[i];
+                _ArrayRealRange[i] = rangeDie;
+
+            }
+        }
 
     }
 

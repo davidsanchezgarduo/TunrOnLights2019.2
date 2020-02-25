@@ -27,7 +27,9 @@ public class UnitLevelController : MonoBehaviour
             g.GetComponent<RectTransform>().localPosition = Vector3.zero;
             g.GetComponent<RectTransform>().anchoredPosition = new Vector2(((i + 1) * offsetButton) + (i * widthButton), 0);
             g.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
-            
+            /*Debug.Log("Units id "+i);
+            Debug.Log(unitsScriptable.units[i]);
+            Debug.Log(DataController.instance.unitsData.units[i].levels);*/
             g.GetComponent<UnitUpgradeController>().Init(unitsScriptable.units[i],DataController.instance.unitsData.units[i].level,i,this);
             
         }

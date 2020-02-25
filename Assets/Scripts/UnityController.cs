@@ -41,6 +41,7 @@ public class UnityController : MonoBehaviour
     public GameObject lifeBar;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -131,7 +132,7 @@ public class UnityController : MonoBehaviour
         unitFbx.SetActive(true);
         lifeBar.SetActive(true);
         //GetComponent<MeshRenderer>().material = normalMaterial;
-        GetComponent<MeshRenderer>().enabled = false;
+        //GetComponent<MeshRenderer>().enabled = false;
         typeName = name;
         forceAttack = stadistics.forceAttack;
         lightRange = stadistics.lightRange;

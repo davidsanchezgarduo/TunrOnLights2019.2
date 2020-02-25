@@ -91,10 +91,10 @@ public class UnitiesManager : MonoBehaviour
     public void AddUnity(GameObject unityToAdd,int typeId) {
         GameManager.instance.SetUnit();
         UnityController u = unityToAdd.GetComponent<UnityController>();
-        Debug.Log(typeId);
+        /*Debug.Log(typeId);
         Debug.Log(DataController.instance.unitsData.units[typeId].level);
         Debug.Log(unitScriptable.units[typeId].levelsDescription[DataController.instance.unitsData.units[typeId].level]);
-        Debug.Log(unitScriptable.units[typeId].typeName);
+        Debug.Log(unitScriptable.units[typeId].typeName);*/
         u.StablishUnit(unitScriptable.units[typeId].levelsDescription[DataController.instance.unitsData.units[typeId].level], unitScriptable.units[typeId].typeName);
         unities.Add(u);
         SearchInteractableObjects(u.transform.position,u.lightRange);

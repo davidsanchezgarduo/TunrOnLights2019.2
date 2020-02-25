@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   units:
-  - image: {fileID: 21300000, guid: 571adb41c9fcea3498a25ed80c9b6df9, type: 3}
+  - image: {fileID: 21300000, guid: 09afae5f7308d459e842340a5099ae16, type: 3}
     typeName: Pistolero
     levelsDescription:
     - priceLevelUp: 500
@@ -41,7 +41,7 @@ MonoBehaviour:
       lightRange: 0.12
       speedAttack: 0.32
       lives: 55
-  - image: {fileID: 21300000, guid: e21e4442bcfa8ff4c9f6b44fb2194e47, type: 3}
+  - image: {fileID: 21300000, guid: 67f18dd72da3b4054aba7cd9db5b12f3, type: 3}
     typeName: Francotirador
     levelsDescription:
     - priceLevelUp: 500

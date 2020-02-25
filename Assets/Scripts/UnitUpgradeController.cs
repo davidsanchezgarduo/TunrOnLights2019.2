@@ -33,7 +33,7 @@ public class UnitUpgradeController : MonoBehaviour
     }
 
     private void PrintData() {
-        if (currentLevel < myContext.levelsDescription.Length)
+        if (currentLevel < myContext.levelsDescription.Length-1)
         {
             levelButtonText.text = "Level Up " + myContext.levelsDescription[currentLevel].priceLevelUp;
             stadisticsText.text = "Name: " + myContext.typeName + "\nFuerza: " + myContext.levelsDescription[currentLevel + 1].forceAttack + "\nRango: " + myContext.levelsDescription[currentLevel + 1].lightRange +

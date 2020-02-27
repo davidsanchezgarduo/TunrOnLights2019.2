@@ -41,7 +41,7 @@ public class LevelSelectorController : MonoBehaviour
     public void ClickStart() {
         buttonSound.Play();
         DataController.instance.LastLevelSelected = levelsData.levels[currentLevel].sceneName;
-        SceneManager.LoadScene(levelsData.levels[currentLevel].sceneName);
+        SceneManager.LoadScene("Instructions");
     }
 
     public void ClickReturn()

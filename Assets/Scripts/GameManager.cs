@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public float unitsPerHorde = 2;
     public bool inHorde;
     public float plusSpawnDifficult = 0.5f;
-    public int lives = 5; 
+    public int lives = 10; 
 
     private List<SpotController> spots;
     public bool hasFinishSpawn;
@@ -153,7 +153,12 @@ public class GameManager : MonoBehaviour
     public void RescueCivil() {
         restantCivils--;
         UIController.instance.SetCivils(initialCivils-restantCivils);
-        if (restantCivils == 0) {
+
+    }
+
+    public void CivilInGoal() {
+        if (restantCivils == 0)
+        {
             FinishLevel(true);
         }
     }

@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class UnitiesManager : MonoBehaviour
 {
+
+
+
+
     public GameObject[] prefabsUnities;
     public static UnitiesManager instance;
     public List<UnityController> unities;
@@ -18,6 +22,8 @@ public class UnitiesManager : MonoBehaviour
     private float rangeConvert = 56f;
     private float rangeDie = 0.03f;
     public bool inHorde;
+    private float candleRange = 0.04f;
+    private List<Vector3> CandlesPositions;
 
     private void Awake()
     {
@@ -25,6 +31,7 @@ public class UnitiesManager : MonoBehaviour
         keys = new List<KeyController>();
         doors = new List<DoorControl>();
         civils = new List<CivilController>();
+        CandlesPositions = new List<Vector3>();
     }
 
     // Start is called before the first frame update
@@ -53,7 +60,7 @@ public class UnitiesManager : MonoBehaviour
             float dis = Vector3.Distance(unities[i].transform.position, chek);
             if (dis > distanceMinBetween)
             {
-                if (dis < unities[i].lightRange* rangeConvert)
+                if (dis < unities[i].lightRangeWorld)
                 {
                     canPos = 2;
                 }
@@ -69,7 +76,27 @@ public class UnitiesManager : MonoBehaviour
                 float dis = Vector3.Distance(ligths[i].transform.position, chek);
                 if (dis > 0)
                 {
-                    if (dis < ligths[i].lightRange* rangeConvert)
+                    if (dis < ligths[i].lightRangeWorld)
+                    {
+                        canPos = 2;
+                    }
+
+                }
+                else
+                {
+                    canPos = 1;
+                    break;
+                }
+            }
+        }
+
+        if (canPos != 1) {
+            for (int i = 0; i < CandlesPositions.Count; i++)
+            {
+                float dis = Vector3.Distance(CandlesPositions[i], chek);
+                if (dis > 0)
+                {
+                    if (dis < candleRange*56)
                     {
                         canPos = 2;
                     }
@@ -97,7 +124,7 @@ public class UnitiesManager : MonoBehaviour
         Debug.Log(unitScriptable.units[typeId].typeName);*/
         u.StablishUnit(unitScriptable.units[typeId].levelsDescription[DataController.instance.unitsData.units[typeId].level], unitScriptable.units[typeId].typeName);
         unities.Add(u);
-        SearchInteractableObjects(u.transform.position,u.lightRange);
+        SearchInteractableObjects(u.transform.position,u.lightRangeWorld);
 
         RaycastHit hit;
         int layerMask = 1 << 8;
@@ -107,14 +134,14 @@ public class UnitiesManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 30))
         {
             if (hit.transform.CompareTag("Shadow")) {
-                unityToAdd.GetComponent<UnityController>().myTextCoord = hit.textureCoord;
+                u.myTextCoord = hit.textureCoord;
                 if (shadow == null)
                 {
                     shadow = hit.transform.GetComponent<ShadowController>();
-                    shadow.SetUnit(hit.textureCoord, unityToAdd.GetComponent<UnityController>().lightRange);
+                    shadow.SetUnit(hit.textureCoord, u.lightRange);
                 }
                 else {
-                    shadow.SetUnit(hit.textureCoord, unityToAdd.GetComponent<UnityController>().lightRange);
+                    shadow.SetUnit(hit.textureCoord, u.lightRange);
                 }
             }
 
@@ -124,8 +151,8 @@ public class UnitiesManager : MonoBehaviour
 
     public void RemoveUnity(UnityController unityToRemove) {
         unities.Remove(unityToRemove);
-        shadow.RemoveUnit(unityToRemove.myTextCoord,unityToRemove.lightRange);
-
+        shadow.RemoveUnit(unityToRemove.myTextCoord, candleRange, unityToRemove.transform.position);
+        CandlesPositions.Add(unityToRemove.transform.position);
         //Aparecer vela o lapida en la posicion del muerto
 
         /*for(int i = 0; i < unities.Count; i++) {

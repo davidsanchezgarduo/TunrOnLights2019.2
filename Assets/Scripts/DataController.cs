@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerData{
@@ -79,6 +79,13 @@ public class DataController : MonoBehaviour
             string json = JsonUtility.ToJson(unitsData);
             File.WriteAllText(Application.persistentDataPath + "/" + unitsDataPath, json);
 
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene("MenuScene");
         }
     }
 

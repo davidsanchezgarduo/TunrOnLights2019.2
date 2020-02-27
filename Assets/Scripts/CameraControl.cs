@@ -138,7 +138,7 @@ public class CameraControl : MonoBehaviour
             layerMask = ~layerMask;
             if (Physics.Raycast(ray, out hit, 30, layerMask))
             {
-                Debug.Log(hit.collider.tag);
+                //Debug.Log(hit.collider.tag);
                 if (hit.collider.CompareTag("Door")) {
                     hit.collider.GetComponent<DoorControl>().OpenDoors();
                 }

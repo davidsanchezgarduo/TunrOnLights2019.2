@@ -6,9 +6,11 @@ public class LightController : MonoBehaviour
 {
     public float lightRange;
     private Transform lightArea;
+    public float lightRangeWorld;
     // Start is called before the first frame update
     void Start()
     {
+        lightRangeWorld = lightRange * 56;
         lightArea = transform.GetChild(0);
         //lightArea.localScale = new Vector3(lightRange*2,0.01f, lightRange*2);
 

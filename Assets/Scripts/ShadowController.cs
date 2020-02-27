@@ -106,6 +106,8 @@ using UnityEngine;
 
 public class ShadowController : MonoBehaviour
 {
+
+    public GameObject candlePrefab;
     private Material myMaterial;
     private float myScale;
     private Vector2 goalLight;
@@ -119,6 +121,9 @@ public class ShadowController : MonoBehaviour
     private int _ArrayLength;
     private bool hasChange;
     private float velLerp = 2;
+    
+
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -192,7 +197,6 @@ public class ShadowController : MonoBehaviour
 
     public void SetUnit(Vector2 textureCoord, float rangeLight)
     {
-        Debug.Log(textureCoord+" "+ rangeLight);
         //Añadimos valores a los array
         _ArrayPoints[_ArrayLength] = new Vector4(textureCoord.x,textureCoord.y,0,0);
         _ArrayRange[_ArrayLength] = rangeLight/2;
@@ -204,7 +208,7 @@ public class ShadowController : MonoBehaviour
 
     }
 
-    public void RemoveUnit(Vector2 textureCoord, float rangeDie)
+    public void RemoveUnit(Vector2 textureCoord, float rangeDie, Vector3 pos)
     {
         //Buscamos en los array los valores similares del vector2, obtenemos el ai y eliminamos en los otros puntos
         //Tambien movemos de lugar los valores en el array para no dejar espacios vacios
@@ -215,6 +219,7 @@ public class ShadowController : MonoBehaviour
                 _ArrayRangeInitial[i] = _ArrayRange[i];
                 _ArrayRealRange[i] = rangeDie;
 
+                GameObject candle = Instantiate(candlePrefab, new Vector3(pos.x,0.1f,pos.z),Quaternion.identity);
             }
         }
 

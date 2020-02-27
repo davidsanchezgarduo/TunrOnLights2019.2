@@ -19,53 +19,53 @@ MonoBehaviour:
     - priceLevelUp: 500
       forceAttack: 1
       lightRange: 0.08
-      speedAttack: 0.4
-      lives: 30
+      speedAttack: 0.45
+      lives: 60
     - priceLevelUp: 700
       forceAttack: 2
       lightRange: 0.09
-      speedAttack: 0.38
-      lives: 40
+      speedAttack: 0.43
+      lives: 70
     - priceLevelUp: 900
       forceAttack: 3
       lightRange: 0.1
-      speedAttack: 0.36
-      lives: 45
+      speedAttack: 0.41
+      lives: 75
     - priceLevelUp: 1100
       forceAttack: 4
       lightRange: 0.11
-      speedAttack: 0.34
-      lives: 50
+      speedAttack: 0.39
+      lives: 80
     - priceLevelUp: 0
       forceAttack: 5
       lightRange: 0.12
-      speedAttack: 0.32
-      lives: 55
+      speedAttack: 0.37
+      lives: 85
   - image: {fileID: 21300000, guid: 67f18dd72da3b4054aba7cd9db5b12f3, type: 3}
     typeName: Francotirador
     levelsDescription:
     - priceLevelUp: 500
-      forceAttack: 10
+      forceAttack: 8
       lightRange: 0.11
       speedAttack: 1
-      lives: 20
+      lives: 35
     - priceLevelUp: 700
-      forceAttack: 12
+      forceAttack: 10
       lightRange: 0.12
       speedAttack: 0.95
-      lives: 25
+      lives: 40
     - priceLevelUp: 900
-      forceAttack: 14
+      forceAttack: 12
       lightRange: 0.13
       speedAttack: 0.9
-      lives: 30
+      lives: 45
     - priceLevelUp: 1100
-      forceAttack: 16
+      forceAttack: 14
       lightRange: 0.14
       speedAttack: 0.85
-      lives: 35
+      lives: 50
     - priceLevelUp: 0
-      forceAttack: 18
+      forceAttack: 16
       lightRange: 0.15
       speedAttack: 0.8
-      lives: 40
+      lives: 55

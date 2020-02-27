@@ -17,6 +17,7 @@ public class UnityController : MonoBehaviour
     public string socialName;
     public int forceAttack;
     public float lightRange;
+    public float lightRangeWorld;
     public float speedAttack;
     public int lives;
     public Vector2 myTextCoord;
@@ -40,9 +41,9 @@ public class UnityController : MonoBehaviour
     public AudioClip deadClip;
     public GameObject lifeBar;
 
+    public GameObject topViewMesh;
+    public SkinnedMeshRenderer[] topViewMesRenderer;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         lifeBar.SetActive(false);
@@ -71,7 +72,7 @@ public class UnityController : MonoBehaviour
 
         if (currentState == UnitState.SEARCHING)
         {
-            currentTarget = EnemyGenerator.instance.CheckEnemyInRange(transform.position, lightRange*56);
+            currentTarget = EnemyGenerator.instance.CheckEnemyInRange(transform.position, lightRangeWorld);
             if (currentTarget != null) {
                 currentState = UnitState.ATTACKING;
                 //transform.LookAt(currentTarget.transform);
@@ -133,14 +134,23 @@ public class UnityController : MonoBehaviour
         lifeBar.SetActive(true);
         //GetComponent<MeshRenderer>().material = normalMaterial;
         //GetComponent<MeshRenderer>().enabled = false;
+        topViewMesh.SetActive(false);
         typeName = name;
         forceAttack = stadistics.forceAttack;
         lightRange = stadistics.lightRange;
+        lightRangeWorld = stadistics.lightRange * 56;
         speedAttack = stadistics.speedAttack;
         lives = stadistics.lives;
     }
 
     public void Paused(bool p) {
         paused = p;
+    }
+
+    public void SetColor(Color c) {
+        for (var i = 0; i < topViewMesRenderer.Length; i++)
+        {
+            topViewMesRenderer[i].material.color = c;
+        }
     }
 }

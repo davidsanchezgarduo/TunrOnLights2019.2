@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelector.unity
     guid: 05a51a7a579e84a72ba1f964e469533a
   - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: de09b6a72d71a40dabd854f5eac055fe
+  - enabled: 1
     path: Assets/Scenes/HotelLevel.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

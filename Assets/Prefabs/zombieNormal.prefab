@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  attackForce: 2
+  attackForce: 1
   attackSpeed: 0.5
   lives: 40
   visionRange: 3

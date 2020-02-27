@@ -22,13 +22,15 @@ public class CivilController : MonoBehaviour
     {
         float dist = Vector3.Distance(transform.position, goal.transform.position);
         if (dist < 1) {
-            GameManager.instance.RescueCivil();
+            GameManager.instance.CivilInGoal();
             Destroy(this.gameObject);
         }
     }
 
     public void ActiveCivil() {
         //anim.enabled = true;
+
+        GameManager.instance.RescueCivil();
         anim.SetTrigger("Run");
         agent.SetDestination(new Vector3(goal.transform.position.x, 0.5f, goal.transform.position.z));
         agent.speed = speed;

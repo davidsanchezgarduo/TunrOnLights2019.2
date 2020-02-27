@@ -12,6 +12,7 @@ public class UnityCreator : MonoBehaviour
     public TextMeshProUGUI myName;
     private GameObject prefabObject;
     private GameObject currentUnity;
+    private UnityController currentController;
     private Material currentUnityMaterial;
     private Camera mainCamera;
     private Vector3 dir;
@@ -32,8 +33,9 @@ public class UnityCreator : MonoBehaviour
         CameraControl.instance.inMovement = false;
         //Obtener unity gameobject
         currentUnity = Instantiate(prefabObject, Vector3.zero, Quaternion.identity);
-        currentUnityMaterial = currentUnity.GetComponent<MeshRenderer>().material;
-        initialColor = currentUnityMaterial.color;
+        currentController = currentUnity.GetComponent<UnityController>();
+        //currentUnityMaterial = currentUnity.GetComponent<UnityController>().GetTopMaterial();
+        initialColor = Color.blue;
         /*Vector3 pos = mainCamera.ScreenToWorldPoint(new Vector3(posTouch.x,posTouch.y,10));
         Debug.Log("POsStart darg "+pos);
 
@@ -49,7 +51,8 @@ public class UnityCreator : MonoBehaviour
         {
             Destroy(currentUnity);
             currentUnity = null;
-            currentUnityMaterial = null;
+            currentController = null;
+            //currentUnityMaterial = null;
         }
         else {
             Vector3 pos = mainCamera.ScreenToWorldPoint(new Vector3(posTouch.x, posTouch.y, 5));
@@ -67,7 +70,8 @@ public class UnityCreator : MonoBehaviour
                 //Debug.Log(b1+" . "+ b2);
                 if (b1 && b2)
                 {
-                    currentUnityMaterial.color = initialColor;
+                    //currentUnityMaterial.color = initialColor;
+                    currentController.SetColor(initialColor);
                     UnitiesManager.instance.AddUnity(currentUnity,typeId);
                     currentUnity = null;
                     currentUnityMaterial = null;
@@ -76,7 +80,8 @@ public class UnityCreator : MonoBehaviour
                 {
                     Destroy(currentUnity);
                     currentUnity = null;
-                    currentUnityMaterial = null;
+                    currentController = null;
+                    //currentUnityMaterial = null;
                 }
             }
         }
@@ -104,10 +109,12 @@ public class UnityCreator : MonoBehaviour
                 //Debug.Log(b1 + " . " + b2);
                 if (b1 && b2)
                 {
-                    currentUnityMaterial.color = initialColor;
+                    //currentUnityMaterial.color = initialColor;
+                    currentController.SetColor(initialColor);
                 }
                 else {
-                    currentUnityMaterial.color = Color.red;
+                    currentController.SetColor(Color.red);
+                    //currentUnityMaterial.color = Color.red;
                 }
             }
 

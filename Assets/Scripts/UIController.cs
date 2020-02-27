@@ -22,9 +22,12 @@ public class UIController : MonoBehaviour
     public Transform content;
     public GameObject gameOverPanel;
     public TextMeshProUGUI messageText;
-    public TextMeshProUGUI restantZombies;
+    //public TextMeshProUGUI restantZombies;
 
     public GameObject endLevelButton;
+    public GameObject HordePanel;
+    public GameObject CivilsPanel;
+    public GameObject HordeFinish;
 
     private float widthButton = 120;
     private float offsetButton = 30;
@@ -34,9 +37,13 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI restantUnits;
     private int totalEnemies;
 
+    private TextMeshProUGUI HordePanelText;
+    private TextMeshProUGUI CivilsPanelText;
+
     public void Awake()
     {
         instance = this;
+        CivilsPanelText = CivilsPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     // Start is called before the first frame update
@@ -51,7 +58,11 @@ public class UIController : MonoBehaviour
         menuButtonText = menuButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         //civilsText.text = "Civils 0/";
         menuOpen = false;
+        HordePanelText = HordePanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
+        HordePanel.SetActive(false);
+        CivilsPanel.SetActive(false);
+        HordeFinish.SetActive(false);
         for (int i = 0; i < unitScriptable.units.Length; i++) {
             GameObject g = Instantiate(unitPrefab, Vector3.zero, Quaternion.identity);
             g.transform.parent = content;
@@ -115,6 +126,14 @@ public class UIController : MonoBehaviour
         menuButton.interactable = false;
         menuButtonText.text = "Zombies: "+ totalEnemies;
         hordeText.text = "Horda: " + h;
+        HordePanel.SetActive(true);
+        HordePanelText.text = "Horda " + h;
+        StartCoroutine(TurnOffHordePanel());
+    }
+
+    IEnumerator TurnOffHordePanel() {
+        yield return new WaitForSeconds(1.5f);
+        HordePanel.SetActive(false);
     }
 
     public void SetRestantZombies() {
@@ -126,6 +145,14 @@ public class UIController : MonoBehaviour
         endLevelButton.SetActive(false);
         menuButton.interactable = true;
         menuButtonText.text = "Unidades";
+        HordeFinish.SetActive(true);
+        StartCoroutine(TurnOffFinishhorde());
+    }
+
+    IEnumerator TurnOffFinishhorde()
+    {
+        yield return new WaitForSeconds(2.0f);
+        HordeFinish.SetActive(false);
     }
 
     public void SetLivesText(int lives) {
@@ -134,8 +161,15 @@ public class UIController : MonoBehaviour
 
     public void SetCivils(int civils)
     {
-        Debug.Log(""+ TotalCivils);
-        civilsText.text = "Civils: " + civils+"/"+TotalCivils;
+        civilsText.text = "Civiles: " + civils+"/"+TotalCivils;
+        CivilsPanel.SetActive(true);
+        CivilsPanelText.text = "Civiles: " + civils + "/" + TotalCivils;
+        StartCoroutine(TurnOffCivils());
+    }
+
+    IEnumerator TurnOffCivils() {
+        yield return new WaitForSeconds(1.5f);
+        CivilsPanel.SetActive(false);
     }
 
     public void FinishGame(bool win) {

@@ -3303,7 +3303,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 143646653}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7583,7 +7583,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 683329700}
   m_HandleRect: {fileID: 683329699}
   m_Direction: 2
-  m_Value: 1.0000039
+  m_Value: 1
   m_Size: 0.60999995
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11499,16 +11499,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: zombieTanque
       objectReference: {fileID: 0}
-    - target: {fileID: 4480746768134306378, guid: 7745319166ead204cb6930bce0f07196,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480746768134306379, guid: 7745319166ead204cb6930bce0f07196,
-        type: 3}
-      propertyPath: speed
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 4480746768134306391, guid: 7745319166ead204cb6930bce0f07196,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12259,11 +12249,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 3413415051955740931, guid: 83e4a1b3290ca5b489209e3d542c56aa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3413415051955740935, guid: 83e4a1b3290ca5b489209e3d542c56aa,
         type: 3}
